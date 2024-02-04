@@ -1,0 +1,58 @@
+service: aws-lambda-sw
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+      Resource:
+        - arn:aws:dynamodb:us-east-1:851725658024:table/DroideTable
+
+functions:
+  api:
+    handler: src/index.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+  getVehicle:
+    handler: src/getVehicle.getVehicle
+    events:
+      - httpApi:
+          path: /vehiculo/{id}
+          method: get
+  addDroide:
+    handler: src/addDroide.addDroide
+    events:
+      - httpApi:
+          path: /droide
+          method: post
+
+resources:
+  Resources:
+    VehicleTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: VehicleTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    DroideTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: DroideTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
