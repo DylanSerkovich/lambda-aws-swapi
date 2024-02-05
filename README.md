@@ -23,6 +23,9 @@ This template demonstrates how to make a simple HTTP API with Node.js running on
 
 ## Funcionamiento de los Endpoints
 
+> [!NOTE]
+> Usar Postman o similar
+
 ### Endpoint 1: `/vehiculo/{id}` - Obtener un Registro de Vehículo
 
 #### Metodo: `GET`
@@ -32,31 +35,68 @@ This template demonstrates how to make a simple HTTP API with Node.js running on
 #### Ejemplo de Uso
 
 ```bash
-curl -X GET https://tu-api.com/vehiculo/4
+curl -X GET https://t02fiz6qw6.execute-api.us-east-1.amazonaws.com/vehiculo/4
 ```
 
 ### Endpoint 2: `/droide` - Guardar un registro del objeto droide
 
 #### Metodo: `POST`
 
+#### Ejemplo de Uso
+
+```bash
+curl -X POST https://t02fiz6qw6.execute-api.us-east-1.amazonaws.com/droide
+```
+
 #### Parametros
 
 ```bash
 {
-    "nombre": "",
-    "modelo": "",
-    "fabricante": "",
-    "year_fabricacion": 0,
-    "funcionalidad": [""],
-    "propietario": "",
-    "estado": ""
+    "nombre": "R2-D2",
+    "modelo": "Astromecánico",
+    "fabricante": "Industrial Automaton",
+    "year_fabricacion": 1977,
+    "funcionalidad": ["Navegación", "Reparación", "Comunicación"],
+    "propietario": "Luke Skywalker",
+    "estado": "Activo"
 }
 ```
+
+### Endpoint 3: `/droides` - Listar los Items de Droides
+
+#### Metodo: `GET`
 
 #### Ejemplo de Uso
 
 ```bash
-curl -X POST https://tu-api.com/droide
+curl -X GET https://t02fiz6qw6.execute-api.us-east-1.amazonaws.com/droides
+```
+
+#### Ejemplo de respuesta
+
+```bash
+{
+    "status": 200,
+    "body": {
+        "droidesItems": [
+            {
+                "nombre": "R2-D2",
+                "funcionalidad": [
+                    "Navegación",
+                    "Reparación",
+                    "Comunicación"
+                ],
+                "modelo": "Astromecánico",
+                "propietario": "Luke Skywalker",
+                "fabricante": "Industrial Automaton",
+                "fecha_registro": "2024-02-05 04:03:39",
+                "year_fabricacion": 1977,
+                "id": "77fd2146-27b9-4a9a-85d1-9571c75a8604",
+                "estado": "Activo"
+            }
+        ]
+    }
+}
 ```
 
 ## Uso de la documentación Swagger

@@ -17,6 +17,11 @@ const addItem = async (tableName, item) => {
     await dynamodb.put(params).promise();
 };
 
+const findAllItem = async (tableName) => {
+    const items = await dynamodb.scan({ TableName: tableName }).promise();
+    return items;
+}
+
 module.exports = {
-    addItem,
+    addItem,findAllItem,
 }

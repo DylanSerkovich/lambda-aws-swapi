@@ -3,8 +3,6 @@ servers:
   # Added by API Auto Mocking Plugin
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/DILANDGAME/Lambda-sw/1.0.0
-  - description: SwaggerHub API Auto Mocking
     url: https://t02fiz6qw6.execute-api.us-east-1.amazonaws.com
 info:
   version: "1.0.0"
@@ -152,3 +150,41 @@ paths:
                   mensaje:
                     type: string
                     example: Droide agregado correctamente
+
+  /droides:
+    get:
+      tags:
+        - Droide
+      description: Retorna un registro de vehiculo
+      operationId: getDroides
+      responses:
+        "200":
+          description: lista de droides
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        nombre:
+                          type: string
+                        modelo:
+                          type: string
+                        fabricante:
+                          type: string
+                        year_fabricacion:
+                          type: integer
+                        funcionalidad:
+                          type: array
+                          items:
+                            type: string
+                        propietario:
+                          type: string
+                        estado:
+                          type: string
+                        fecha_registro:
+                          type: string # Ajusta el tipo según el formato de fecha

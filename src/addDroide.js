@@ -1,4 +1,5 @@
 const {addItem} = require("./repository/dynamodbOperations")
+const { format } = require('date-fns');
 const addDroide = async(event) => {
 
     try{
@@ -10,7 +11,7 @@ const addDroide = async(event) => {
             propietario, 
             estado, 
             } = JSON.parse(event.body);
-    const fecha_registro = new Date();
+    const fecha_registro = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
     
 
     const newDroide = {
