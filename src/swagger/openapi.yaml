@@ -1,0 +1,154 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/DILANDGAME/Lambda-sw/1.0.0
+  - description: SwaggerHub API Auto Mocking
+    url: https://t02fiz6qw6.execute-api.us-east-1.amazonaws.com
+info:
+  version: "1.0.0"
+  title: Lambda AWS SWAPI
+  description: La API para trasformar campos al español y guardar datos
+paths:
+  /vehiculo/{id}:
+    get:
+      tags:
+        - Vehiculo
+      description: Retorna un registro de vehiculo de SWAPI
+      operationId: getVehiculo
+      parameters:
+        - name: id
+          in: path
+          description: Identificador del registro
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Registro del vehiculo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  body:
+                    type: object
+                    properties:
+                      nombre:
+                        type: string
+                        example: Sand Crawler
+                      modelo:
+                        type: string
+                        example: Digger Crawler
+                      fabricante:
+                        type: string
+                        example: Corellia Mining Corporation
+                      costos_en_creditos:
+                        type: string
+                        example: "150000"
+                      tamano:
+                        type: string
+                        example: "36.8"
+                      velocidad_maxima_atmosfera:
+                        type: string
+                        example: "30"
+                      equipo:
+                        type: string
+                        example: "46"
+                      pasajeros:
+                        type: string
+                        example: "30"
+                      capacidad_carga:
+                        type: string
+                        example: "50000"
+                      consumibles:
+                        type: string
+                        example: "2 months"
+                      clase_vehiculo:
+                        type: string
+                        example: wheeled
+                      pilotos:
+                        type: array
+                        items:
+                          type: string
+                        example: []
+                      peliculas:
+                        type: array
+                        items:
+                          type: string
+                        example:
+                          - "https://swapi.dev/api/films/1/"
+                          - "https://swapi.dev/api/films/5/"
+                      creado:
+                        type: string
+                        example: "2014-12-10T15:36:25.724000Z"
+                      editado:
+                        type: string
+                        example: "2014-12-20T21:30:21.661000Z"
+                      url:
+                        type: string
+                        example: "https://swapi.dev/api/vehicles/4"
+  /droide:
+    post:
+      tags:
+        - Droide
+      description: Guarda un objeto Droide en la base de datos
+      operationId: addDroide
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  example: R2-D2
+                modelo:
+                  type: string
+                  example: Astromecánico
+                fabricante:
+                  type: string
+                  example: Industrial Automaton
+                year_fabricacion:
+                  type: integer
+                  example: 1977
+                funcionalidad:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    - Navegación
+                    - Reparación
+                    - Comunicación
+                propietario:
+                  type: string
+                  example: Luke Skywalker
+                estado:
+                  type: string
+                  example: Activo
+              required:
+                - nombre
+                - modelo
+                - fabricante
+                - year_fabricacion
+                - funcionalidad
+                - propietario
+                - estado
+
+      responses:
+        "200":
+          description: Droide agregado correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    example: Droide agregado correctamente
